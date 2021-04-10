@@ -14,19 +14,21 @@ namespace Es
     {
         public ExpertSys Es;
 
-        struct SmartFact
+        class SmartFact
         {
             public Fact fact;
             public int iparent;
             public List<int> kids;
             public int irule;
+            public int itarget;
 
-            public SmartFact(Fact f, int ip, List<int> k, int ir)
+            public SmartFact(Fact f, int ip, List<int> k, int ir, int it)
             {
                 this.fact = f;
                 this.iparent = ip;
                 this.kids = k;
                 this.irule = ir;
+                this.itarget = it;
             }
             public void ChangeP(int ip)
             {
@@ -108,24 +110,42 @@ namespace Es
                         //Доказали ли мы факт через уже проверенные факты (смотрим на последнее правило в списке использованных правил)
                         bool isproof = false;
                         List<int> list = new List<int>();
-                        for (int i = 0; i < Es.rules[used_rules[used_rules.Count - 1]].prem.Count&&!isproof;i++)
-                        {                            
-                            for(int t=0;t<checked_facts.Count&&!isproof;t++)
+                        bool isconcl = false;
+                        for(int i=0;i < Es.rules[used_rules[used_rules.Count - 1]].concl.Count && !isconcl; i++)
+                        {
+                            if (Es.rules[used_rules[used_rules.Count - 1]].concl[i].variable.name == curused_fact.variable.name)
                             {
-                                if(Es.rules[used_rules[used_rules.Count - 1]].prem[i].variable.name == checked_facts[t].fact.variable.name)
+                                if (Es.rules[used_rules[used_rules.Count - 1]].concl[i].value == curused_fact.value)
                                 {
-                                    if(Es.rules[used_rules[used_rules.Count - 1]].prem[i].value == checked_facts[t].fact.value)
-                                    {
-                                        list.Add(checked_facts[t].irule);
-                                        isproof = true;
-                                    }
+                                    isconcl = true;
                                 }
                             }
-                            isproof = !isproof;
+                        }
+                        if (isconcl)
+                        {
+                            for (int i = 0; i < Es.rules[used_rules[used_rules.Count - 1]].prem.Count && !isproof; i++)
+                            {
+                                for (int t = 0; t < checked_facts.Count && !isproof; t++)
+                                {
+                                    if (Es.rules[used_rules[used_rules.Count - 1]].prem[i].variable.name == checked_facts[t].fact.variable.name)
+                                    {
+                                        if (Es.rules[used_rules[used_rules.Count - 1]].prem[i].value == checked_facts[t].fact.value)
+                                        {
+                                            list.Add(checked_facts[t].irule);
+                                            isproof = true;
+                                        }
+                                    }
+                                }
+                                isproof = !isproof;
+                            }
+                        }
+                        else
+                        {
+                            isproof = true;
                         }
                         if(!isproof)
                         {
-                            SmartFact newfact = new SmartFact(curused_fact, used_rules[used_rules.Count - 2], list, used_rules[used_rules.Count - 1]);
+                            SmartFact newfact = new SmartFact(curused_fact, used_rules[used_rules.Count - 2], list, used_rules[used_rules.Count - 1], id_used_fact_target);
                             checked_facts.Add(newfact);
                             unchecked_facts.Pop();
                             used_rules.RemoveAt(used_rules.Count - 1);
@@ -149,6 +169,7 @@ namespace Es
                                     if (checked_facts[i].iparent == del_rule)
                                     {
                                         count_checked_prem_facts++;
+                                        checked_facts[i].ChangeP(-1);
                                     }
                                 }
                                 int del_uncheck_facts = count_prem_facts - count_checked_prem_facts;
@@ -188,6 +209,7 @@ namespace Es
                                         if (checked_facts[i].iparent == del_rule)
                                         {
                                             count_checked_prem_facts++;
+                                            checked_facts[i].ChangeP(-1);
                                         }
                                     }
                                     int del_uncheck_facts = count_prem_facts - count_checked_prem_facts;
@@ -199,15 +221,14 @@ namespace Es
                                     {
                                         unchecked_facts.Pop();
                                     }
-                                    Fact addfact = curused_fact;
-                                    addfact.value = choice;
-                                    SmartFact newfact = new SmartFact(addfact, used_rules[used_rules.Count - 1], lkids, -1);
+                                    Fact addfact = new Fact(curused_fact.variable, choice);
+                                    SmartFact newfact = new SmartFact(addfact, -1, lkids, -1, id_used_fact_target);
                                     checked_facts.Add(newfact);
                                     used_rules.RemoveAt(used_rules.Count - 1);
                                 }
                                 else //Иначе просто добавляем новы проверенных факт и переходим к след итерации в цикле
                                 {
-                                    SmartFact newfact = new SmartFact(curused_fact, used_rules[used_rules.Count - 1], lkids, -1);
+                                    SmartFact newfact = new SmartFact(curused_fact, used_rules[used_rules.Count - 1], lkids, -1, id_used_fact_target);
                                     checked_facts.Add(newfact);
                                     unchecked_facts.Pop();
                                 }
@@ -273,6 +294,7 @@ namespace Es
                                                 if (checked_facts[i].iparent == del_rule)
                                                 {
                                                     count_checked_prem_facts++;
+                                                    checked_facts[i].ChangeP(-1);
                                                 }
                                             }
                                             int del_uncheck_facts = count_prem_facts - count_checked_prem_facts;
@@ -284,15 +306,14 @@ namespace Es
                                             {
                                                 unchecked_facts.Pop();
                                             }
-                                            Fact addfact = curused_fact;
-                                            addfact.value = choice;
-                                            SmartFact newfact = new SmartFact(addfact, used_rules[used_rules.Count - 1], lkids, -1);
+                                            Fact addfact = new Fact(curused_fact.variable, choice);
+                                            SmartFact newfact = new SmartFact(addfact, -1, lkids, -1, id_used_fact_target);
                                             checked_facts.Add(newfact);
                                             used_rules.RemoveAt(used_rules.Count - 1);
                                         }
                                         else
                                         {
-                                            SmartFact newfact = new SmartFact(curused_fact, used_rules[used_rules.Count - 1], lkids, -1);
+                                            SmartFact newfact = new SmartFact(curused_fact, used_rules[used_rules.Count - 1], lkids, -1, id_used_fact_target);
                                             checked_facts.Add(newfact);
                                             unchecked_facts.Pop();
                                         }                                        
@@ -320,6 +341,7 @@ namespace Es
                                             if (checked_facts[i].iparent == del_rule)
                                             {
                                                 count_checked_prem_facts++;
+                                                checked_facts[i].ChangeP(-1);
                                             }
                                         }
                                         int del_uncheck_facts = count_prem_facts - count_checked_prem_facts;
@@ -344,7 +366,7 @@ namespace Es
                                 lkids.Add(checked_facts[i].irule);
                             }
                         }
-                        SmartFact newfact = new SmartFact(Es.rules[rule_target].concl[id_used_fact_target], -1, lkids, rule_target);
+                        SmartFact newfact = new SmartFact(Es.rules[rule_target].concl[id_used_fact_target], -2, lkids, rule_target, id_used_fact_target);
                         checked_facts.Add(newfact);
                     }
                     used_rules.Clear();

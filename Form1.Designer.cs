@@ -76,7 +76,7 @@ namespace Es
             this.консультацияToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(804, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1184, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -136,7 +136,7 @@ namespace Es
             this.tabControl1.Location = new System.Drawing.Point(13, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(775, 399);
+            this.tabControl1.Size = new System.Drawing.Size(1155, 729);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -150,33 +150,33 @@ namespace Es
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(767, 373);
+            this.tabPage1.Size = new System.Drawing.Size(1147, 703);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Правила";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // listBox2
             // 
-            this.listBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(489, 273);
+            this.listBox2.Location = new System.Drawing.Point(869, 265);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(272, 30);
             this.listBox2.TabIndex = 5;
             // 
             // listBox1
             // 
-            this.listBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(489, 135);
+            this.listBox1.Location = new System.Drawing.Point(869, 138);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(272, 121);
             this.listBox1.TabIndex = 4;
             // 
             // button3
             // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button3.Location = new System.Drawing.Point(489, 91);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(869, 94);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(272, 38);
             this.button3.TabIndex = 3;
@@ -186,8 +186,8 @@ namespace Es
             // 
             // button2
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button2.Location = new System.Drawing.Point(489, 47);
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(869, 50);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(272, 38);
             this.button2.TabIndex = 2;
@@ -196,8 +196,8 @@ namespace Es
             // 
             // button1
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.Location = new System.Drawing.Point(489, 3);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(869, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(272, 38);
             this.button1.TabIndex = 1;
@@ -219,7 +219,7 @@ namespace Es
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(483, 367);
+            this.listView1.Size = new System.Drawing.Size(863, 697);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -249,7 +249,7 @@ namespace Es
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(767, 373);
+            this.tabPage2.Size = new System.Drawing.Size(1147, 683);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Переменные ";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -347,7 +347,7 @@ namespace Es
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(767, 373);
+            this.tabPage3.Size = new System.Drawing.Size(1147, 683);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Домены";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -407,11 +407,11 @@ namespace Es
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 451);
+            this.ClientSize = new System.Drawing.Size(1184, 781);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(1200, 490);
+            this.MaximumSize = new System.Drawing.Size(1200, 820);
             this.MinimumSize = new System.Drawing.Size(820, 490);
             this.Name = "Form1";
             this.Text = "Form1";

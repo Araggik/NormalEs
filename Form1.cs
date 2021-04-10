@@ -347,7 +347,7 @@ namespace Es
                     {
                         notfind = false;
                         currentEs.rules.RemoveAt(i);
-                        listView1.Items.Remove(selectitm[i]);
+                        listView1.Items.Remove(selectitm[0]);
                     }
                 }
             }
