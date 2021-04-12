@@ -14,27 +14,8 @@ namespace Es
     {
         public ExpertSys Es;
 
-        class SmartFact
-        {
-            public Fact fact;
-            public int iparent;
-            public List<int> kids;
-            public int irule;
-            public int itarget;
+        public List<SmartFact> checked_facts;
 
-            public SmartFact(Fact f, int ip, List<int> k, int ir, int it)
-            {
-                this.fact = f;
-                this.iparent = ip;
-                this.kids = k;
-                this.irule = ir;
-                this.itarget = it;
-            }
-            public void ChangeP(int ip)
-            {
-                this.iparent = ip;
-            }
-        }
         //МЛВ
         public void Conclusion()
         {
@@ -54,7 +35,7 @@ namespace Es
                 curvar++;
             }
             //Список проверенных фактов
-            List<SmartFact> checked_facts = new List<SmartFact>();
+            //checked_facts = new List<SmartFact>();
             //Список использованных правил, при проверке текущего факта
             List<int> used_rules = new List<int>();
             //Стек непроверенных правил
@@ -381,10 +362,12 @@ namespace Es
             if(!notall||!notstop)
             {
                 label1.Text = "Цель не достигнута";
+                button3.Visible = false;
             }
             else
             {
                 label1.Text = checked_facts[checked_facts.Count - 1].fact.variable.name + " = " + checked_facts[checked_facts.Count - 1].fact.value;
+                button3.Visible = true;
             }
         }
 
@@ -392,19 +375,13 @@ namespace Es
         {
             InitializeComponent();
             Es = null;
-            button2.Visible = false;
             button3.Visible = false;
+            checked_facts = new List<SmartFact>();
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            comboBox1.Enabled = true;
-            comboBox1.SelectedIndex = 0;
         }
 
         private void Form5_Shown(object sender, EventArgs e)
@@ -421,9 +398,19 @@ namespace Es
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {     
-             //МЛВ
-             Conclusion();
+        {
+
+            checked_facts.Clear();
+            //МЛВ
+            Conclusion();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form6 form6 = new Form6();
+            form6.list_facts = checked_facts;
+            form6.list_rule = Es.rules;
+            var res = form6.ShowDialog();
         }
     }
 }

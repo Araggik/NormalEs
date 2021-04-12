@@ -23,6 +23,7 @@ namespace Es
             InitializeComponent();
             choices = new List<string>();
             choice = "";
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void button1_Click(object sender, EventArgs e)

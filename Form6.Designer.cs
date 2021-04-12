@@ -82,6 +82,7 @@ namespace Es
             this.Controls.Add(this.treeView1);
             this.Name = "Form6";
             this.Text = "Form6";
+            this.Shown += new System.EventHandler(this.Form6_Shown);
             this.ResumeLayout(false);
 
         }
